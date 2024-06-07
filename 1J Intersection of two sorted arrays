@@ -1,0 +1,40 @@
+class Solution{
+    public:
+    //Function to return a list containing the intersection of two arrays.
+    vector<int> printIntersection(int arr1[], int arr2[], int N, int M) 
+    { 
+        int i = 0;
+        int j = 0;
+        
+        vector<int> ans;
+        
+        
+        while(i<N && j<M)
+        {
+            if(arr1[i]<arr2[j])
+            {
+                i++;
+            }
+            
+            else if (arr2[j]<arr1[i])
+            {
+                j++;
+            }
+            
+            else{
+                if(ans.empty() || ans.back()!= arr1[i])
+                {
+                    ans.push_back(arr1[i]);
+                }
+                i++;
+                j++;
+            }
+        }
+        
+        return ans;
+    }
+
+};
+
+TIME COMPLEXITY - O(N+M)
+SPACE COMPLEXITY - O(1)
