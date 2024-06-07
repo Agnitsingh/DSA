@@ -1,0 +1,14 @@
+class Solution{
+    public:
+    
+    //Function to rotate an array by d elements in counter-clockwise direction. 
+    void rotateArr(int arr[], int d, int n){
+        int rot = d%n;
+        reverse(arr, arr+rot); // 0 to rot-1 index;
+        reverse(arr+rot, arr+n);
+        reverse(arr, arr+n);
+    }
+};
+
+TIME COMPLEXITY - O(2N)
+SPACE COMPLEXITY - O(1)
