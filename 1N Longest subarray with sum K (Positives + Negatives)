@@ -1,0 +1,40 @@
+class Solution{
+    public:
+    int lenOfLongSubarr(int A[],  int N, int K) 
+    { 
+        int maxLen = 0;
+        map<int, int> mpp;
+        int sum = 0;
+        
+        for(int i=0; i<N; i++)
+        {   
+            sum = sum+A[i];
+            
+            if(sum == K)
+            {
+                maxLen = max(maxLen, i+1);
+            }
+            
+            int rem = sum - K;
+            
+            if(mpp.find(rem) != mpp.end())
+            {
+                int len = i - mpp[rem];
+                maxLen = max(maxLen, len);
+            }
+            
+            
+            
+            if(mpp.find(sum) == mpp.end())
+            {
+                mpp[sum] = i;
+            }
+        }
+        
+        return maxLen;
+    } 
+
+};
+
+TIME COMPLEXITY - O(N Log N) ORDERED MAP
+SPACE COMPLEXITY - O(N)
