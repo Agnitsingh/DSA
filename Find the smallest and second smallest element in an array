@@ -1,0 +1,32 @@
+vector<int> minAnd2ndMin(int a[], int n) {
+    int min = a[0];
+    int smin = INT_MAX;
+    
+    vector<int>v;
+    
+    for(int i=1; i<n; i++)
+    {
+        if(a[i]<min)
+        {
+            smin = min;
+            min = a[i];
+        }
+        
+        else if(a[i]>min && a[i]<smin)
+        {
+            smin = a[i];
+        }
+    }
+    
+    if(smin == INT_MAX)
+    {
+        return {-1};
+    }
+    
+    v.push_back(min);
+    v.push_back(smin);
+    
+    return v;
+}
+
+TIME COMPLEXITY - O(N)
