@@ -1,0 +1,37 @@
+// TIME COMPLEXITY - O(N) => O(N+N+N)
+
+class Solution{
+public:
+    vector<int> nextPermutation(int N, vector<int> arr){
+        // Step 1 - Break Point
+        
+        int brkInd = -1;
+        for(int i=N-2; i>=0; i--)
+        {
+            if(arr[i]<arr[i+1])
+            {
+                brkInd = i;
+                break;
+            }
+        }
+        
+        if(brkInd == -1)
+        {
+            reverse(arr.begin(), arr.end());
+            return arr;
+        }
+        
+        // Step 2
+        for(int i=N-1; i>brkInd; i--)
+        {
+            if(arr[i]>arr[brkInd])
+            {
+                swap(arr[brkInd], arr[i]);
+                break;
+            }
+        }
+        
+        reverse(arr.begin()+brkInd+1, arr.end()); // brkInd+1 waale Index to N-1 Index 
+        return arr;
+    }
+};
