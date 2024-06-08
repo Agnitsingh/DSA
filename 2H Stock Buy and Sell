@@ -1,0 +1,40 @@
+// BRUTE FORCE O(N^2) TLE
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        int maxi = INT_MIN;
+
+        for(int i=0; i<n; i++)
+        {
+            for(int j=i+1; j<n; j++)
+            {
+                maxi = max(maxi, (prices[j]-prices[i]));
+            }
+        }
+
+        if(maxi<0) return 0;
+        else return maxi;
+    }
+};
+
+// OPTIMAL SOLUTION O(N)
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        int maxProfit = 0;
+        int minBuy = prices[0];
+
+        for(int i=1; i<n; i++)
+        {
+            maxProfit = max(maxProfit, (prices[i]-minBuy));
+
+            if(prices[i]<minBuy) minBuy = prices[i];
+        }
+
+        return maxProfit;
+    }
+};
