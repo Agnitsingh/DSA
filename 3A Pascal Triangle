@@ -1,0 +1,31 @@
+// TIME COMPLEXITY - O(n^2)
+
+class Solution {
+public:
+
+    vector<int> genRow(int row)
+    {
+        vector<int> answer;
+        answer.push_back(1);
+
+        int ans = 1;
+        for(int col=1; col<row; col++)
+        {
+            ans = ans*(row-col);
+            ans = ans/col;
+            answer.push_back(ans);
+        }
+
+        return answer;
+    }
+
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> answer;
+        for(int i=1; i<=numRows; i++)
+        {
+            vector<int> temp = genRow(i);
+            answer.push_back(temp);
+        }
+        return answer;
+    }
+};
