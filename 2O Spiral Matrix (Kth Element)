@@ -1,0 +1,74 @@
+class Solution{
+
+	public:
+	int findK(vector<vector<int>> &matrix, int r, int c, int k)
+    {
+        //vector<int> answer;
+        int count = 0;
+        int left = 0;
+        int right = c-1;
+        int top = 0;
+        int bottom = r-1;
+        int answer;
+        
+        while(left<=right && top<=bottom)
+        {
+            // RIGHT
+            for(int i=left; i<=right; i++)
+            {
+                count = count+1;
+                if(count == k)
+                {
+                    return matrix[top][i];
+                }
+            }
+            
+            top = top+1;
+            
+            // BOTTOM
+            for(int i=top; i<=bottom; i++)
+            {
+                count = count+1;
+                if(count == k)
+                {
+                    return matrix[i][right];
+                }
+            }
+            right = right-1;
+            
+            // LEFT
+            if(top<=bottom)
+            {
+                for(int i=right; i>=left; i--)
+                {
+                    count = count+1;
+                    if(count == k)
+                    {
+                        return matrix[bottom][i];
+                    }
+                }
+            }
+            bottom = bottom-1;
+            
+            // UP
+            if(left<=right)
+            {
+                for(int i=bottom; i>=top; i--)
+                {
+                    count = count+1;
+                    if(count == k)
+                    {
+                        return matrix[i][left];
+                    }
+                }
+            }
+            
+            left = left+1;
+        }
+        
+        
+    }
+
+};
+
+TIME COMPLEXITY - O(R*C)
