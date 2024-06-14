@@ -1,0 +1,76 @@
+class Solution{
+public:
+    vector<int> findTwoElement(vector<int> arr, int n) {
+        int xr = 0;
+        
+        for(int i=0; i<n; i++)
+        {
+            xr = xr^arr[i];
+        }
+        
+        for(int i=1; i<=n; i++)
+        {
+            xr = xr^i;
+        }
+        
+        // FINDING SET BIT OF xr...
+        
+        int bitNo = 0;
+        
+        while(1)
+        {
+            if((xr & (1<<bitNo)) != 0)
+            {
+                break;
+            }
+            bitNo++;
+        }
+        
+        
+        
+        int zero = 0;
+        int one = 0;
+        
+        // For every number we need to check bitNo bit is 0 or 1..
+        
+        for(int i=0; i<n; i++)
+        {
+            if(((arr[i])&(1<<bitNo)) == 0)
+            {
+                zero = zero^arr[i];
+            }
+            else
+            {
+                one = one^arr[i];
+            }
+        }
+        
+        for(int i=1; i<=n; i++)
+        {
+            if(((i)&(1<<bitNo)) == 0)
+            {
+                zero = zero^i;
+            }
+            else
+            {
+                one = one^i;
+            }
+        }
+        
+        
+        
+        int count = 0;
+        
+        for(int i=0; i<n; i++)
+        {
+            if(arr[i] == zero) count++;
+            if(count == 2) break;
+        }
+        
+        if(count == 2) return {zero, one};
+        else return {one, zero};
+    }
+};
+
+// Expected Time Complexity: O(N)
+// Expected Auxiliary Space: O(1)
